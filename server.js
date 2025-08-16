@@ -16,7 +16,7 @@ const routes = require('./routes');
 const path = require('path');
 const helmet = require('helmet');
 const csrf = require('csurf');
-const { middlewareGlobal, checkCsrfError, checkCsrfError } = require('./src/middlewares/middleware');
+const { middlewareGlobal, checkCsrfError } = require('./src/middlewares/middleware');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
@@ -46,7 +46,6 @@ app.use(csrf());
 
 app.use(middlewareGlobal);
 app.use(checkCsrfError);
-app.use(checkCsrfError);
 app.use(routes);
 
 app.on('pronto', () => {
@@ -55,5 +54,3 @@ app.on('pronto', () => {
     console.log('Servidor executando na porta 3000');
   });
 });
-
-

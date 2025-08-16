@@ -1,5 +1,5 @@
 {
-  "name": "aula139",
+  "name": "aula17",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,29 +11,29 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
-    "connect-mongo": "^5.1.0",
-    "core-js": "^3.45.0",
-    "css-loader": "^6.7.1",
+    "connect-mongo": "^4.4.1",
+    "core-js": "^3.15.2",
+    "css-loader": "^6.2.0",
     "csurf": "^1.11.0",
-    "dotenv": "^17.2.1",
-    "ejs": "^3.1.8",
-    "express": "^5.1.0",
-    "express-session": "^1.18.2",
-    "helmet": "^8.1.0",
-    "mongoose": "^8.17.1",
-    "regenerator-runtime": "^0.13.11",
-    "style-loader": "^3.3.1"
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^5.13.3",
+    "regenerator-runtime": "^0.13.9",
+    "style-loader": "^3.2.1",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.18.10",
-    "@babel/core": "^7.28.0",
-    "@babel/preset-env": "^7.28.0",
-    "babel-loader": "^8.4.1",
-    "nodemon": "^3.1.10",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "babel-loader": "^8.2.2",
+    "nodemon": "^2.0.12",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
   }
 }
