@@ -1,0 +1,29 @@
+<%- include('./includes/head.ejs') %>
+
+
+  <section class="container">
+    <h1>
+      <!-- variáveis -->
+      <!-- <%= umaVariavelLocal %>-->
+      <% if(typeof titulo !== 'undefined') { %>
+        <%= titulo %>
+      <% } else { %>
+        <%= 'Título não definido' %>
+      <% } %> 
+
+      <!-- <% numeros.forEach(num => { %>
+        <%= num %>
+        <br>
+      <% }); %> -->
+
+
+    </h1>
+    <form action="/" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <label>Cliente</label>
+      <input type="text" name="cliente">
+      <button>Submit</button>
+    </form>
+  </section>
+
+<%- include('./includes/footer.ejs') %>
