@@ -1,5 +1,7 @@
 exports.middlewareGlobal = (req, res, next) => {
-  res.locals.umaVariavelLocal = ''
+  res.locals.errors = req.flash('errors') || [];
+  res.locals.success = req.flash('success') || [];
+  res.locals.csrfToken = req.csrfToken();
   next();
 };
 
