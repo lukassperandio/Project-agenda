@@ -9,53 +9,66 @@ const LoginSchema = new mongoose.Schema({
 
 const LoginModel = mongoose.model('Login', LoginSchema);
 
-class Login{
-    constructor(body){
+class Login {
+    constructor(body) {
         this.body = body;
         this.errors = [];
         this.user = null;
     }
 
-    async register(){
+    async login(){
         this.valida();
-        if(this.errors.length > 0) return;
+        if (this.errors.length > 0) return;
+        this.user = await LoginModel.findOne({ email: this.body.email });
+
+        if(!this.user) {
+            this.errors.push('Usuário não encontrado');
+            return;
+        }
+
+        if (!bcryptjs.compareSync(this.body.password, this.user.password)) {
+            this.errors.push('Senha inválida');
+            this.user = null;
+            return;
+        }
+    }
+
+    async register() {
+        this.valida();
+        if (this.errors.length > 0) return;
 
         this.userExists();
 
-        if(this.errors.length > 0) return;
+        if (this.errors.length > 0) return;
 
         const salt = bcryptjs.genSaltSync();
         this.body.password = bcryptjs.hashSync(this.body.password, salt);
-        
-        try{
-            this.user = await LoginModel.create(this.body);
-        }catch(e){
-           console.log(e);
-        }
+
+        this.user = await LoginModel.create(this.body);
     }
 
-    async userExists(){
+    async userExists() {
         //checa se user existe através do email
-        const user = await LoginModel.findOne({ email: this.body.email });
-        
-        if(user) this.errors.push('Usuário já existe');
+        this.user = await LoginModel.findOne({ email: this.body.email });
+
+        if (this.user) this.errors.push('Usuário já existe');
     }
 
-    valida(){
+    valida() {
         this.cleanUp();
 
-        if(!validator.isEmail(this.body.email)) {
+        if (!validator.isEmail(this.body.email)) {
             this.errors.push('E-mail inválido');
         }
-        if(3 > this.body.password.length || this.body.password.length > 50) {
+        if (3 > this.body.password.length || this.body.password.length > 50) {
             this.errors.push('A senha deve ter entre 3 e 50 caracteres');
         }
 
     }
 
-    cleanUp(){
-        for(const key in this.body){
-            if(typeof this.body[key] !== 'string'){
+    cleanUp() {
+        for (const key in this.body) {
+            if (typeof this.body[key] !== 'string') {
                 this.body[key] = '';
             }
         }
